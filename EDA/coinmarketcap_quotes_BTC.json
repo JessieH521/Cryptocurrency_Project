@@ -1,0 +1,83 @@
+{
+    "status": {
+        "timestamp": "2025-02-12T13:26:19.509Z",
+        "error_code": 0,
+        "error_message": null,
+        "elapsed": 18,
+        "credit_count": 1,
+        "notice": null
+    },
+    "data": {
+        "BTC": {
+            "id": 1,
+            "name": "Bitcoin",
+            "symbol": "BTC",
+            "slug": "bitcoin",
+            "num_market_pairs": 11937,
+            "date_added": "2010-07-13T00:00:00.000Z",
+            "tags": [
+                "mineable",
+                "pow",
+                "sha-256",
+                "store-of-value",
+                "state-channel",
+                "coinbase-ventures-portfolio",
+                "three-arrows-capital-portfolio",
+                "polychain-capital-portfolio",
+                "binance-labs-portfolio",
+                "blockchain-capital-portfolio",
+                "boostvc-portfolio",
+                "cms-holdings-portfolio",
+                "dcg-portfolio",
+                "dragonfly-capital-portfolio",
+                "electric-capital-portfolio",
+                "fabric-ventures-portfolio",
+                "framework-ventures-portfolio",
+                "galaxy-digital-portfolio",
+                "huobi-capital-portfolio",
+                "alameda-research-portfolio",
+                "a16z-portfolio",
+                "1confirmation-portfolio",
+                "winklevoss-capital-portfolio",
+                "usv-portfolio",
+                "placeholder-ventures-portfolio",
+                "pantera-capital-portfolio",
+                "multicoin-capital-portfolio",
+                "paradigm-portfolio",
+                "bitcoin-ecosystem",
+                "ftx-bankruptcy-estate",
+                "2017-2018-alt-season"
+            ],
+            "max_supply": 21000000,
+            "circulating_supply": 19823203,
+            "total_supply": 19823203,
+            "is_active": 1,
+            "infinite_supply": false,
+            "platform": null,
+            "cmc_rank": 1,
+            "is_fiat": 0,
+            "self_reported_circulating_supply": null,
+            "self_reported_market_cap": null,
+            "tvl_ratio": null,
+            "last_updated": "2025-02-12T13:25:00.000Z",
+            "quote": {
+                "USD": {
+                    "price": 96485.41962412639,
+                    "volume_24h": 36795309544.113144,
+                    "volume_change_24h": 16.1268,
+                    "percent_change_1h": 0.22654719,
+                    "percent_change_24h": -1.20496339,
+                    "percent_change_7d": -2.02372787,
+                    "percent_change_30d": 5.46606151,
+                    "percent_change_60d": -4.38864134,
+                    "percent_change_90d": 6.02179146,
+                    "market_cap": 1912650059749.241,
+                    "market_cap_dominance": 60.3452,
+                    "fully_diluted_market_cap": 2026193812106.65,
+                    "tvl": null,
+                    "last_updated": "2025-02-12T13:25:00.000Z"
+                }
+            }
+        }
+    }
+}
