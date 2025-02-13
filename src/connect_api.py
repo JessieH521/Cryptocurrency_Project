@@ -25,3 +25,29 @@ def get_latest_coin_data(target_symbol="BTC"):
     except (ConnectionError, Timeout, TooManyRedirects, json.JSONDecodeError) as e:
         print(f"API request failed:{e}")
         return None
+    
+
+# Get real-time exchange rates using the API
+
+def fetch_exchange_rates(base_currency="USD"):
+    """ 从 API 获取最新汇率 , 默认查询的是以 USD 为基准的所有其他货币的汇率"""
+    url = f"https://api.exchangerate-api.com/v4/latest/{base_currency}"
+    
+    session = Session()
+    
+    try:
+        response = session.get(url)
+        response.raise_for_status()
+        data = response.json()       # 返回的响应数据（通常是 JSON 格式）解析为 Python 字典
+        return data["rates"]         # 提取 rates 键对应的值, 一堆国家的汇率字典
+    except requests.exceptions.RequestException as e:
+        print(f"Failed to obtain exchange rate: {e}")
+        return None
+    
+    
+    
+if __name__ == "__main__":
+    exchange_rates = fetch_exchange_rates("USD")  # 获取基于 USD 的汇率
+    for currency, rate in exchange_rates.items():
+        print(f"{currency}: {rate}")
+

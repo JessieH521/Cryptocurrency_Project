@@ -7,8 +7,8 @@ from connect_api import get_latest_coin_data    # 现在从 connect_api.py 导�
 
 # 创建了一个 Quix Streams 的应用实例，创建了一个名为 coins 的 Kafka 主题，输出JSON，连接到本地的 Kafka 服务，
 def main():
-    app = Application(broker_address="localhost:9092", consumer_group="coin_group")
-    coins_topic = app.topic(name="coins", value_serializer="json")
+    app = Application(broker_address="localhost:9092", consumer_group="BTC_coin_group")
+    coins_topic = app.topic(name="BTC_coins", value_serializer="json")
 
     # 3. # 获取 Kafka 生产者对象 producer，负责向 Kafka 主题发送消息。
     with app.get_producer() as producer:
