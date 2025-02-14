@@ -51,3 +51,5 @@ if __name__ == "__main__":
     for currency, rate in exchange_rates.items():
         print(f"{currency}: {rate}")
 
+
+
