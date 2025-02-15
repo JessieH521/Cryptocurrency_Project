@@ -8,6 +8,7 @@ from constants import (
     POSTGRES_USER)
 from pprint import pprint
 
+
 # 🔹 **数值格式化函数**，转换为 K / M / B 形式
 def format_number(num):
     if num >= 1_000_000_000:
@@ -27,7 +28,6 @@ def extract_coin_data(message):
         "local_price": round(message["quote"].get("DKK", {}).get("price", 0), 2),
         "volume_24h": format_number(latest_quote["volume_24h"]),  # 24h 交易量格式化
         "volume_change_24h": format_number(latest_quote.get("volume_change_24h", 0)),  # 24h 交易量变化
-        "price_change_24h": format_number(latest_quote.get("price_change_24h", 0)),  # 24h 价格变化
         "updated": message["last_updated"]
     }
 
@@ -39,7 +39,7 @@ def create_postgres_sink():
         dbname=POSTGRES_DBNAME, # type: ignore
         user=POSTGRES_USER,  # type: ignore
         password=POSTGRES_PASSWORD, # type: ignore
-        table_name="Ethereum",
+        table_name="polkadot",
         schema_auto_update=True,)    # 如果数据模式变了（比如新字段），自动更新 PostgreSQL 表结构。
     
     return sink
@@ -48,13 +48,13 @@ def create_postgres_sink():
 def main():
     app = Application(
         broker_address="localhost:9092",
-        consumer_group="ETH_coin_group",        # Kafka 消费者组（多个 consumer 共享读取）
+        consumer_group="DOT_coin_group",        # Kafka 消费者组（多个 consumer 共享读取）
         auto_offset_reset="earliest",
     )
 
     # 2. 订阅 Kafka 主题 coins，消息格式是 JSON
     #  app 是 Application 类的一个实例，代表 QuixStreams 的应用对象。它的作用是 管理 Kafka 连接、订阅主题、处理数据流，并最终存入数据库。
-    coins_topic = app.topic(name="ETH_coins", value_deserializer="json")
+    coins_topic = app.topic(name="DOT_coins", value_deserializer="json")
 
     sdf = app.dataframe(topic=coins_topic)
 

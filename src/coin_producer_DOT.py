@@ -4,7 +4,7 @@ import json
 from pprint import pprint
 from connect_api import get_latest_coin_data, fetch_exchange_rates
 
-TARGET_COIN = "ETH"
+TARGET_COIN = "DOT"
 CURRENCY = "SEK"      # 目标货币（可以选择 SEK, NOK, DKK 等）
 
 # Get exchange rate
@@ -19,8 +19,8 @@ def convert_price(usd_price, CURRENCY="SEK"):
 
 # 创建了一个 Quix Streams 的应用实例，创建了一个名为 coins 的 Kafka 主题，输出JSON，连接到本地的 Kafka 服务，
 def main():
-    app = Application(broker_address="localhost:9092", consumer_group="ETH_coin_group")
-    coins_topic = app.topic(name="ETH_coins", value_serializer="json")
+    app = Application(broker_address="localhost:9092", consumer_group="DOT_coin_group")
+    coins_topic = app.topic(name="DOT_coins", value_serializer="json")
 
     # 获取所有北欧国家的货币符号
     nordic_countries = ["SEK", "NOK", "DKK", "ISK", "FIM"]      # 可以根据需要添加更多货币
