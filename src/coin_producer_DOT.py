@@ -55,7 +55,6 @@ def main():
 if __name__ == "__main__":
     main()
 
-
 # 在 coin_consumer.py 中消费到的 coin_latest 将会直接包含类似下面的数据结构
 # {
 #   "symbol": "ETH",

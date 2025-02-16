@@ -9,7 +9,7 @@ from constants import (
 from pprint import pprint
 
 
-# 🔹 **数值格式化函数**，转换为 K / M / B 形式
+# **数值格式化函数**，转换为 K / M / B 形式
 def format_number(num):
     if num >= 1_000_000_000:
         return f"{num / 1_000_000_000:.1f}B"  # 10 亿 = 1B
@@ -25,9 +25,13 @@ def extract_coin_data(message):
     return{
         "coin": message["name"],
         "price_usd": round(latest_quote["price"], 2),
-        "local_price": round(message["quote"].get("DKK", {}).get("price", 0), 2),
-        "volume_24h": format_number(latest_quote["volume_24h"]),  # 24h 交易量格式化
-        "volume_change_24h": format_number(latest_quote.get("volume_change_24h", 0)),  # 24h 交易量变化
+        "SEK": round(message["quote"].get("SEK", {}).get("price", 0), 2),
+        "NOK": round(message["quote"].get("NOK", {}).get("price", 0), 2),
+        "DKK": round(message["quote"].get("DKK", {}).get("price", 0), 2),
+        "ISK": round(message["quote"].get("ISK", {}).get("price", 0), 2),
+        "FIM": round(message["quote"].get("FIM", {}).get("price", 0), 2),
+        "volume_24h": format_number(latest_quote["volume_24h"]),  
+        "volume_change_24h": round(latest_quote.get("volume_change_24h", 0), 2),  # 24h 交易量变化
         "updated": message["last_updated"]
     }
 

@@ -2,7 +2,7 @@ import streamlit as st
 from streamlit_autorefresh import st_autorefresh
 from sqlalchemy import create_engine
 import pandas as pd
-# from charts import line_chart
+from charts import line_chart
 from constants import (
     POSTGRES_DBNAME,
     POSTGRES_HOST,
@@ -30,14 +30,15 @@ def layout():
     df_ada = load_data("select * from cardano")
     df_dot = load_data("select * from polkadot")
 
-    st.markdown("# Market trend analysis of Cryptocurrencies")
+    st.markdown("# Analysis of Cryptocurrencies")
     st.markdown("This is a simple dashboard about the latest market quote for Cryptocurrencies.")
 
     # table
-    st.markdown("## Cardano Data")
+    st.markdown("## Cardano and Polkadot Data")
     st.markdown("This will display live data from coin market API")
-    st.markdown("Latest data")
+    st.markdown("Latest data for Cardano")
     st.dataframe(df_ada.tail())
+    st.markdown("Latest data for Polkadot")
     st.dataframe(df_dot.tail())
 
     # Selectbox
@@ -46,15 +47,21 @@ def layout():
     countries = ["Sweden", "Norway", "Denmark", "Iceland", "Finland"]   # ["SEK", "NOK", "DKK", "ISK", "FIM"]
     country = st.selectbox(
         "Which Nordic country to choose?", countries) 
-    st.markdown(f"Now showing you the data in {country} currency.") 
+    currencies = {"Sweden":"SEK", "Norway":"NOK", "Denmark":"DKK", "Iceland":"ISK", "Finland":"FIM"}
+    currency = currencies.get(country, "Unknown")
+
+    st.markdown(f"Now showing you the data in local currency from {country}.") 
 
 
-    # # metric
-    # labels = ("")
-    # cols = st.columns(3)
+    # metric
+    labels = ("name", "price", "percent_change_24h")
+    cols = st.columns(3)
+    
 
-    # # Line chart
-    # st.markdown("## Last price in {currency} for Cardano and Ethereum")
+    # Line chart - price
+    st.markdown(f"## Chart showing the last currency price in {currency} ")
+    st.pyplot(line_chart(df_ada, df_dot, "cardano", "polkadot", currency))
+
 
 
 
